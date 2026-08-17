@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Definición básica de un Bean -->
-     <bean id="myFirstBean" class="com.discography.beans.MyFirstBean">
-        <property name="mensaje" value="Hola desde Spring!" />
-     </bean>
-
-      <bean id="artistRepository">
-        <property name="class" value="com.discography.repository.impl.ArtistRepositoryImpl" />
-      </bean>
-
-      <bean id="trackRepository">
-        <property name="class" value="com.discography.repository.impl.TrackRepositoryImpl" />
-      </bean>
-      
-      <bean id="artistService">
-        <property name="class" value="com.discography.service.impl.ArtistServiceImpl" />
-      </bean>
-
-      <bean id="trackService">
-        <property name="class" value="com.discography.service.impl.TrackServiceImpl" />
-      </bean>
-      
-      
+    <!-- Bean de prueba -->
+    <bean id="myFirstBean"
+          class="com.discography.beans.MyFirstBean">
+        <property name="mensaje"
+                  value="Hola desde Spring!" />
+    </bean>
 
 
+    <!-- Repositories -->
+    <bean id="artistRepository"
+          class="com.discography.repository.impl.ArtistRepositoryImpl"
+          init-method="init" />
+
+    <bean id="trackRepository"
+          class="com.discography.repository.impl.TrackRepositoryImpl"
+          init-method="init">
+        <constructor-arg ref="artistRepository"/>
+    </bean>
 
 
-</beans>
+    <!-- Services -->
+    <bean id="artistService"
+          class="com.discography.service.impl.ArtistServiceImpl">
+        <constructor-arg ref="artistRepository"/>
+    </bean>
+
+    <bean id="trackService"
+          class="com.discography.service.impl.TrackServiceImpl">
+        <constructor-arg ref="trackRepository"/>
+    </bean>
+
+</beans>

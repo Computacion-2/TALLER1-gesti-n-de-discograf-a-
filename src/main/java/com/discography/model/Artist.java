@@ -2,10 +2,7 @@ package com.discography.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import java.util.Objects;
 
 public class Artist {
 
@@ -23,11 +20,25 @@ public class Artist {
     }
 
     public boolean addTrack(Track track) {
-        return this.tracks.add(track);
+        if (track != null && !this.tracks.contains(track)) {
+            this.tracks.add(track);
+            if (!track.getArtists().contains(this)) {
+                track.getArtists().add(this);
+            }
+            return true;
+        }
+        return false;
     }
 
     public boolean removeTrack(Track track) {
-        return this.tracks.remove(track);
+        if (track != null && this.tracks.contains(track)) {
+            this.tracks.remove(track);
+            if (track.getArtists().contains(this)) {
+                track.getArtists().remove(this);
+            }
+            return true;
+        }
+        return false;
     }
 
     public List<Track> getTracks() {
@@ -58,4 +69,16 @@ public class Artist {
         this.nationality = nationality;
     }
 
-}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return id == artist.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}

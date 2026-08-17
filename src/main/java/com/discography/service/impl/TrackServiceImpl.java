@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.discography.model.Track;
 import com.discography.repository.ITrackRepository;
+import com.discography.service.ITrackService;
 
-public class TrackServiceImpl implements ITrackRepository {
+public class TrackServiceImpl implements ITrackService {
 
     private ITrackRepository trackRepository;
 
@@ -24,8 +25,8 @@ public class TrackServiceImpl implements ITrackRepository {
     }
 
     @Override
-    public Track save(Track track, List<Integer> artistId) {
-        return trackRepository.save(track, artistId);
+    public Track save(Track track, List<Integer> artistIds) {
+        return trackRepository.save(track, artistIds);
     }
 
     @Override
@@ -34,3 +35,4 @@ public class TrackServiceImpl implements ITrackRepository {
     }
 
 }
+

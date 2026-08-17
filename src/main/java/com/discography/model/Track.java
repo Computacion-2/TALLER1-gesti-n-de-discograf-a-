@@ -2,6 +2,7 @@ package com.discography.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Track {
 
@@ -23,11 +24,25 @@ public class Track {
     }
 
     public boolean addArtist(Artist artist) {
-        return this.artists.add(artist);
+        if (artist != null && !this.artists.contains(artist)) {
+            this.artists.add(artist);
+            if (!artist.getTracks().contains(this)) {
+                artist.getTracks().add(this);
+            }
+            return true;
+        }
+        return false;
     }
 
     public boolean removeArtist(Artist artist) {
-        return this.artists.remove(artist);
+        if (artist != null && this.artists.contains(artist)) {
+            this.artists.remove(artist);
+            if (artist.getTracks().contains(this)) {
+                artist.getTracks().remove(this);
+            }
+            return true;
+        }
+        return false;
     }
 
     public List<Artist> getArtists() {
@@ -74,4 +89,17 @@ public class Track {
         this.albumTitle = albumTitle;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Track track = (Track) o;
+        return id == track.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
+

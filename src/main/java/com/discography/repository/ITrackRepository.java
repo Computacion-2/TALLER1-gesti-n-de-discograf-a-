@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface ITrackRepository {
 
+    void init();
+
     List<Track> getAllTracks();
 
     Track getTrackById(int id);

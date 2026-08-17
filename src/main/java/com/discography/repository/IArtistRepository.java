@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface IArtistRepository {
 
+    void init();
+
     Artist getArtistByName(String name);
 
     List<Artist> getAllArtists();
