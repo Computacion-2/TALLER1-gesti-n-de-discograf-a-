@@ -9,28 +9,36 @@ import org.springframework.stereotype.Component;
 
 public class Artist {
 
-    private String id;
+    private int id;
     private String name;
     private String nationality;
 
     private List<Track> tracks;
 
-    public Artist(String id, String name, String nationality) {
+    public Artist(int id, String name, String nationality) {
         this.id = id;
         this.name = name;
         this.nationality = nationality;
         this.tracks = new ArrayList<>();
     }
 
+    public boolean addTrack(Track track) {
+        return this.tracks.add(track);
+    }
+
+    public boolean removeTrack(Track track) {
+        return this.tracks.remove(track);
+    }
+
     public List<Track> getTracks() {
         return tracks;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

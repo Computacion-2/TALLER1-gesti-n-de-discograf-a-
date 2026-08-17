@@ -9,6 +9,25 @@
         <property name="mensaje" value="Hola desde Spring!" />
      </bean>
 
+      <bean id="artistRepository">
+        <property name="class" value="com.discography.repository.impl.ArtistRepositoryImpl" />
+      </bean>
+
+      <bean id="trackRepository">
+        <property name="class" value="com.discography.repository.impl.TrackRepositoryImpl" />
+      </bean>
+      
+      <bean id="artistService">
+        <property name="class" value="com.discography.service.impl.ArtistServiceImpl" />
+      </bean>
+
+      <bean id="trackService">
+        <property name="class" value="com.discography.service.impl.TrackServiceImpl" />
+      </bean>
+      
+      
+
+
 
 
 </beans>

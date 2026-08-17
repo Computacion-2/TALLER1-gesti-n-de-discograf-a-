@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Track {
 
-    private String id;
+    private int id;
     private String title;
     private String genre;
     private String duration;
@@ -13,7 +13,7 @@ public class Track {
 
     private List<Artist> artists;
 
-    public Track(String id, String title, String genre, String duration, String albumTitle) {
+    public Track(int id, String title, String genre, String duration, String albumTitle) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -22,15 +22,23 @@ public class Track {
         this.artists = new ArrayList<>();
     }
 
+    public boolean addArtist(Artist artist) {
+        return this.artists.add(artist);
+    }
+
+    public boolean removeArtist(Artist artist) {
+        return this.artists.remove(artist);
+    }
+
     public List<Artist> getArtists() {
         return artists;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
