@@ -1,11 +1,9 @@
 package com.discography.beans;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component("myFirstBean")
-@Scope("singleton")
+
 public class MyFirstBean {
 
     // @Value("Hola desde Spring con Anotaciones!") // not necessary if we use
