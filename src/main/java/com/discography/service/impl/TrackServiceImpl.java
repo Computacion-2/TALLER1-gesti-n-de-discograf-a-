@@ -2,17 +2,24 @@ package com.discography.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.discography.model.Track;
 import com.discography.repository.ITrackRepository;
 import com.discography.service.ITrackService;
 
+@Service("trackService")
 public class TrackServiceImpl implements ITrackService {
+
 
     private ITrackRepository trackRepository;
 
+    @Autowired
     public TrackServiceImpl(ITrackRepository trackRepository) {
         this.trackRepository = trackRepository;
     }
+
 
     @Override
     public List<Track> getAllTracks() {

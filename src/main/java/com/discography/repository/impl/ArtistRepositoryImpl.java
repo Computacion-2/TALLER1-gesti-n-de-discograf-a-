@@ -3,17 +3,24 @@ package com.discography.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Repository;
+
 import com.discography.model.Artist;
 import com.discography.model.Track;
 import com.discography.repository.IArtistRepository;
 
+@Repository("artistRepository")
 public class ArtistRepositoryImpl implements IArtistRepository {
+
 
     private List<Artist> artists = new ArrayList<>();
     private int idCounter = 1;
 
     @Override
+    @PostConstruct
     public void init() {
+
         artists.clear();
         artists.add(new Artist(idCounter++, "Queen", "UK"));
         artists.add(new Artist(idCounter++, "Pink Floyd", "UK"));

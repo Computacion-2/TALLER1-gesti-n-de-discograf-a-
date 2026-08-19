@@ -2,39 +2,15 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Bean de prueba -->
-    <bean id="myFirstBean"
-          class="com.discography.beans.MyFirstBean">
-        <property name="mensaje"
-                  value="Hola desde Spring!" />
-    </bean>
+    <!-- Habilitar escaneo automático de componentes anotados con @Repository, @Service, @Component -->
+    <context:component-scan base-package="com.discography" />
 
-
-    <!-- Repositories -->
-    <bean id="artistRepository"
-          class="com.discography.repository.impl.ArtistRepositoryImpl"
-          init-method="init" />
-
-    <bean id="trackRepository"
-          class="com.discography.repository.impl.TrackRepositoryImpl"
-          init-method="init">
-        <constructor-arg ref="artistRepository"/>
-    </bean>
-
-
-    <!-- Services -->
-    <bean id="artistService"
-          class="com.discography.service.impl.ArtistServiceImpl">
-        <constructor-arg ref="artistRepository"/>
-    </bean>
-
-    <bean id="trackService"
-          class="com.discography.service.impl.TrackServiceImpl">
-        <constructor-arg ref="trackRepository"/>
-    </bean>
-
-</beans>
+</beans>
+

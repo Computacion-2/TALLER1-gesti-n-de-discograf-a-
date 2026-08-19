@@ -4,21 +4,29 @@ import com.discography.model.Artist;
 import com.discography.model.Track;
 import com.discography.repository.IArtistRepository;
 import com.discography.repository.ITrackRepository;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.ArrayList;
 
+@Repository("trackRepository")
 public class TrackRepositoryImpl implements ITrackRepository {
+
 
     private List<Track> tracks = new ArrayList<>();
     private IArtistRepository artistRepository;
     private int idCounter = 1;
 
+    @Autowired
     public TrackRepositoryImpl(IArtistRepository artistRepository) {
         this.artistRepository = artistRepository;
     }
 
     @Override
-    public void init() { // 5 tracks per artist (50 total tracks for 10 artists)
+    @PostConstruct
+    public void init() {
+ // 5 tracks per artist (50 total tracks for 10 artists)
         tracks.clear();
 
         // Tracks de Queen
