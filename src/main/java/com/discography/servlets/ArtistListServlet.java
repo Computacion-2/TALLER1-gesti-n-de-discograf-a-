@@ -35,21 +35,32 @@ public class ArtistListServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + "Lista de Artistas" + "</h1>");
+        out.println("<h1>Lista de Artistas</h1>");
 
-        out.println("<ul>");
+        out.println("<table border='1' cellpadding='5'>");
+        out.println("  <thead>");
+        out.println("    <tr>");
+        out.println("      <th>ID</th>");
+        out.println("      <th>Nombre</th>");
+        out.println("      <th>Nacionalidad</th>");
+        out.println("    </tr>");
+        out.println("  </thead>");
+        out.println("  <tbody>");
 
         for (Artist artist : artists) {
-            out.println(
-                    "<li>" + artist.getName() + " " + artist.getNationality() + " " + artist.getId() + "</li>");
-
+            out.println("    <tr>");
+            out.println("      <td>" + artist.getId() + "</td>");
+            out.println("      <td>" + artist.getName() + "</td>");
+            out.println("      <td>" + artist.getNationality() + "</td>");
+            out.println("    </tr>");
         }
 
-        out.println("</ul>");
+        out.println("  </tbody>");
+        out.println("</table><br/>");
 
-        out.println(
-                "<li>Home <a href='http://localhost:8080/demo/home'><button type='button'>Ir</button></a></li>");
+        out.println("<p><a href='" + request.getContextPath() + "/home'><button type='button'>Ir a Home</button></a></p>");
         out.println("</body></html>");
+
     }
 
     public void destroy() {
