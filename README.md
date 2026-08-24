@@ -7,7 +7,7 @@
 
 ---
 
-## 📌 Descripción del Proyecto
+## Descripción del Proyecto
 
 Aplicación web desarrollada en Java usando **Spring Framework (Core)** y **Jakarta Servlets** para la gestión de discografía musical. La aplicación permite administrar **Artistas** (`Artist`) y **Canciones** (`Track`), las cuales están vinculadas mediante una relación **Muchos a Muchos (Many-to-Many)** bidireccional.
 
@@ -15,7 +15,17 @@ Al iniciar el servidor, la aplicación carga automáticamente un estado inicial 
 
 ---
 
-## ⚙️ Funcionalidades y Servlets
+## Ruta Principal (Home)
+
+Una vez desplegada la aplicación en el servidor, se puede acceder al menú principal a través de la siguiente URL:
+
+`http://localhost:8080/demo/home`
+
+Desde este menú principal se encuentran enlazadas todas las funcionalidades y formularios de la aplicación.
+
+---
+
+## Funcionalidades y Servlets
 
 La aplicación ofrece los siguientes servicios expuestos mediante páginas HTML dinámicas manejadas por Servlets:
 
@@ -30,7 +40,7 @@ La aplicación ofrece los siguientes servicios expuestos mediante páginas HTML 
 
 ---
 
-## 🔀 Versiones del Proyecto (Ramas de Git)
+## Versiones del Proyecto (Ramas de Git)
 
 El taller requiere tres enfoques diferentes para la **Inyección de Dependencias (DI)** en Spring, los cuales se encuentran en ramas independientes del repositorio:
 
@@ -45,7 +55,7 @@ El taller requiere tres enfoques diferentes para la **Inyección de Dependencias
   * `@Repository` y `@PostConstruct` en los repositorios.
   * `@Service` y `@Autowired` en los servicios.
 
-### 3. Rama `version-java-config` *(Rama Actual)*
+### 3. Rama `version-java-config`
 * **Enfoque:** Configuración orientada a código Java usando una clase `@Configuration` sin archivo `applicationContext.xml`.
 * **Elementos Clave:** 
   * Clase `com.discography.config.AppConfig` con métodos `@Bean(initMethod = "init")`.
@@ -53,7 +63,7 @@ El taller requiere tres enfoques diferentes para la **Inyección de Dependencias
 
 ---
 
-## 🛠️ Requisitos de Ejecución y Construcción
+## Requisitos de Ejecución y Construcción
 
 ### Requisitos previos:
 * **JDK:** Java 17 o superior
