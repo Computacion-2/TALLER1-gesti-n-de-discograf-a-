@@ -37,23 +37,50 @@ public class TracksListServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + "Lista de Tracks" + "</h1>");
+        out.println("<h1>Lista de Tracks</h1>");
 
-        out.println("<ul>");
+        out.println("<table border='1' cellpadding='5'>");
+        out.println("  <thead>");
+        out.println("    <tr>");
+        out.println("      <th>ID</th>");
+        out.println("      <th>Título</th>");
+        out.println("      <th>Género</th>");
+        out.println("      <th>Duración</th>");
+        out.println("      <th>Álbum</th>");
+        out.println("      <th>Artistas Asociados</th>");
+        out.println("    </tr>");
+        out.println("  </thead>");
+        out.println("  <tbody>");
 
         for (Track track : tracks) {
-            out.println(
-                    "<li>" + track.getAlbumTitle() + " " + track.getDuration() + " " + track.getTitle() + " "
-                            + track.getGenre() + " " + track.getId()
-                            + "</li>");
+            StringBuilder artistNames = new StringBuilder();
+            if (track.getArtists() != null && !track.getArtists().isEmpty()) {
+                for (int i = 0; i < track.getArtists().size(); i++) {
+                    artistNames.append(track.getArtists().get(i).getName());
+                    if (i < track.getArtists().size() - 1) {
+                        artistNames.append(", ");
+                    }
+                }
+            } else {
+                artistNames.append("Sin artistas");
+            }
 
+            out.println("    <tr>");
+            out.println("      <td>" + track.getId() + "</td>");
+            out.println("      <td>" + track.getTitle() + "</td>");
+            out.println("      <td>" + track.getGenre() + "</td>");
+            out.println("      <td>" + track.getDuration() + "</td>");
+            out.println("      <td>" + track.getAlbumTitle() + "</td>");
+            out.println("      <td>" + artistNames.toString() + "</td>");
+            out.println("    </tr>");
         }
 
-        out.println("</ul>");
+        out.println("  </tbody>");
+        out.println("</table><br/>");
 
-        out.println(
-                "<li>Home <a href='http://localhost:8080/demo/home'><button type='button'>Ir</button></a></li>");
+        out.println("<p><a href='" + request.getContextPath() + "/home'><button type='button'>Ir a Home</button></a></p>");
         out.println("</body></html>");
+
     }
 
     public void destroy() {
